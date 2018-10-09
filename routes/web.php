@@ -13,15 +13,10 @@
 
 use App\Task;
 
-Route::get('/tasks', function () {
-    $tasks = Task::all();
+Route::get('/', 'PostsController@index');
 
-    return view('tasks.index', compact('tasks'));
-});
+Route::get('/posts/{post}', 'PostsController@show');
 
-Route::get('/tasks/{task}', function ($id) {
-
-    $task = Task::find($id);
-
-    return view('tasks.show', compact('task'));
-});
+//Route::get('/tasks', 'TasksController@index');
+//
+//Route::get('/tasks/{task}', 'TasksController@show');

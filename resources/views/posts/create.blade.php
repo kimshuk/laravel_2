@@ -15,8 +15,13 @@
             <label for="body">Body:</label>
             <textarea class="form-control" name="body" id="body" cols="30" rows="10"></textarea>
         </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Publish</button>
+        </div>
 
-        <button type="submit" class="btn btn-primary">Publish</button>
+        @include('layouts.errors')
     </form>
+
+
 
 @endsection

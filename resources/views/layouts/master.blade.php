@@ -31,9 +31,9 @@
                 From the Firehose
             </h3>
 
-            <div class="blog-post">
-               @yield('content')
-            </div><!-- /.blog-post -->
+
+                @yield('content')
+
 
             <nav class="blog-pagination">
                 <a class="btn btn-outline-primary" href="#">Older</a>

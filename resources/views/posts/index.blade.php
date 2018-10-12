@@ -10,7 +10,7 @@
             </h2>
             <p class="blog-post-meta">
                 {{ $post->created_at->toFormattedDateString() }}
-                 wrote by {{ $post->user->name }}
+{{--                 wrote by {{ $post->user->name }}--}}
             </p>
 
             <p>{{ $post->body }}</p>

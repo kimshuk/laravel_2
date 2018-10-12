@@ -6,11 +6,13 @@ use Carbon\Carbon;
 
 class Post extends Model
 {
-    public function comments() {
+    public function comments()
+    {
         return $this->hasMany(Comment::class);
     }
 
-    public function user() {    // $post->user
+    public function user()
+    {    // $post->user
         return $this->belongsTo(User::class);
     }
 
@@ -26,7 +28,6 @@ class Post extends Model
 
     public function scopeFilter($query, $filters)
     {
-        dd($filters);
 
         if ($month = $filters['month']) {
             $query->whereMonth('created_at', Carbon::parse($month)->month);
@@ -36,5 +37,14 @@ class Post extends Model
             $query->whereYear('created_at', $year);
         }
 
+    }
+
+    public static function archives()
+    {
+        return static::selectRaw('year(created_at) year, monthname(created_at) month, count(*) published')
+            ->groupBy('year', 'month')
+            ->orderByRaw('min(created_at) asc')
+            ->get()
+            ->toArray();
     }
 }

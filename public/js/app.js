@@ -6892,7 +6892,7 @@ jQuery.fn.ready = function( fn ) {
 
 		// Wrap jQuery.readyException in a function so that the lookup
 		// happens at the time of error handling instead of callback
-		// sessions.
+		// registration.
 		.catch( function( error ) {
 			jQuery.readyException( error );
 		} );
@@ -37460,7 +37460,7 @@ function resolveAsset (
     return
   }
   var assets = options[type];
-  // check local sessions variations first
+  // check local registration variations first
   if (hasOwn(assets, id)) { return assets[id] }
   var camelizedId = camelize(id);
   if (hasOwn(assets, camelizedId)) { return assets[camelizedId] }
@@ -38413,7 +38413,7 @@ function eventsMixin (Vue) {
       }
     } else {
       (vm._events[event] || (vm._events[event] = [])).push(fn);
-      // optimize hook:event cost by using a boolean flag marked at sessions
+      // optimize hook:event cost by using a boolean flag marked at registration
       // instead of a hash lookup
       if (hookRE.test(event)) {
         vm._hasHookEvent = true;
@@ -40820,7 +40820,7 @@ function initComputed$1 (Comp) {
 
 function initAssetRegisters (Vue) {
   /**
-   * Create asset sessions methods.
+   * Create asset registration methods.
    */
   ASSET_TYPES.forEach(function (type) {
     Vue[type] = function (
@@ -47312,7 +47312,7 @@ module.exports = function normalizeComponent (
       : options.beforeCreate
 
     if (!functional) {
-      // inject component sessions as beforeCreate hook
+      // inject component registration as beforeCreate hook
       options.beforeCreate = existing
         ? [].concat(existing, hook)
         : [hook]

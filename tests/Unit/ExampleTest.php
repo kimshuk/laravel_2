@@ -2,11 +2,16 @@
 
 namespace Tests\Unit;
 
+use App\Post;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ExampleTest extends TestCase
 {
+
+    use DatabaseTransactions;
+
     /**
      * A basic test example.
      *
@@ -18,10 +23,29 @@ class ExampleTest extends TestCase
 
         // and each one is posted a month apart.
 
+        $first = factory(Post::class)->create();
+
+        $second = factory(Post::class)->create([
+            'created_at' => \Carbon\Carbon::now()->subMonth()
+        ]);
+
         // When I fetch the archives
+
+        $posts = Post::archives();
 
         // Then the response should be in the proper format.
 
-        $this->assertTrue(true);
+        $this->assertEquals([
+            [
+                "year" => $first->create_at->format('Y'),
+                "month" => $first->created_at->format('F'),
+                "published" => 1
+            ],
+            [
+                "year" => $second->create_at->format('Y'),
+                "month" => $second->created_at->format('F'),
+                "published" => 1
+            ]
+        ], $posts);
     }
 }

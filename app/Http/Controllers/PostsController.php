@@ -16,9 +16,8 @@ class PostsController extends Controller
         $this->middleware('auth')->except(['index', 'show']);
     }
 
-    public function index(Posts $posts)
+    public function index()
     {
-//        $posts = $posts->all();
 
         $posts = Post::latest()
 //            ->filter(request(['month', 'year']))
@@ -54,7 +53,7 @@ class PostsController extends Controller
         session()->flash(
             'message', 'Your post has now been published'
         );
-        
+
         return redirect('/');
     }
 

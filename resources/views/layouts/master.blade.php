@@ -22,6 +22,12 @@
 
 <div class="container">
     @include('layouts.nav')
+
+    @if ($flash = session('message'))
+        <div id="flash-message" class="alert alert-success" role="alert">
+            {{ $flash }}
+        </div>
+    @endif
 </div>
 
 <main role="main" class="container">
@@ -32,7 +38,7 @@
             </h3>
 
 
-                @yield('content')
+            @yield('content')
 
             <br>
             <nav class="blog-pagination">
@@ -43,7 +49,7 @@
         </div><!-- /.blog-main -->
 
         <aside class="col-md-4 blog-sidebar">
-           @include('layouts.sidebar')
+            @include('layouts.sidebar')
         </aside><!-- /.blog-sidebar -->
 
     </div><!-- /.row -->
